@@ -3,7 +3,7 @@ import { Stats } from './Feedback.styled';
 export const Statistics = ({ stats: { good, neutral, bad } }) => {
   const countTotalFeedback = () => good + neutral + bad;
   const countPositiveFeedbackPercentage = () =>
-    (countTotalFeedback() * 100) / good / countTotalFeedback();
+    (good / countTotalFeedback()) * 100;
 
   // const Positive = (total / good) * 100;
   return (
