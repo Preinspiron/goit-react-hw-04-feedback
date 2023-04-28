@@ -1,29 +1,27 @@
-import Profiles from '../Prifiles/Profile';
-import Statistics from '../Statistics/Statistics';
-import user from '../../data/user.json';
-import data from '../../data/data.json';
-import transactions from '../../data/transactions.json';
-import friends from '../../data/friends.json';
-import Friends from '../Friends/Freinds';
+import { Component } from 'react';
 import { Container } from './App.styled.js';
-import { Transactions } from '../Transactions/Transactions';
+import Feedback from '../Feedback';
 
-// console.log(users);
+export class App extends Component {
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  };
 
-export const App = () => {
-  return (
-    <Container>
-      <Profiles
-        username={user.username}
-        tag={user.tag}
-        location={user.location}
-        avatar={user.avatar}
-        stats={user.stats}
-      />
-      <Statistics title="Statistic" stats={data} />
-      {/* <Statistics stats={data} /> */}
-      <Friends friends={friends} />
-      <Transactions items={transactions} />
-    </Container>
-  );
-};
+  handleButtons = e => {
+    const INCRMT = 1;
+    const { name } = e.target;
+    this.setState(prev => {
+      return { [name]: prev[name] + INCRMT };
+    });
+  };
+
+  render() {
+    return (
+      <Container>
+        <Feedback stats={this.state} handleButtons={this.handleButtons} />
+      </Container>
+    );
+  }
+}
