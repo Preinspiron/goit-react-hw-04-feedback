@@ -1,6 +1,3 @@
-export cont Section = props => {
-  return (
-    <>
-    </>
-  )
-}
+export const Section = props => {
+  return <></>;
+};
