@@ -17,7 +17,7 @@ export const Statistics = ({ stats: { good, neutral, bad } }) => {
           <li>Neutral: {neutral}</li>
           <li>Bad: {bad}</li>
           <li>Total: {countTotalFeedback()}</li>
-          <li>Positive: {countPositiveFeedbackPercentage()}%</li>
+          <li>Positive: {Math.round(countPositiveFeedbackPercentage())}%</li>
         </ul>
       )}
     </Stats>
