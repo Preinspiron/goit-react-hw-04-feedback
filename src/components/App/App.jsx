@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Container } from './App.styled.js';
-import Feedback from '../Feedback';
+import FeedbackOptions, { Statistics, Section } from '../Feedback';
 
 export class App extends Component {
   state = {
@@ -16,11 +16,30 @@ export class App extends Component {
       return { [name]: prev[name] + INCRMT };
     });
   };
+  positivePercentage = () => {
+    const { good, neutral, bad } = this.state;
+    return good + neutral + bad;
+  };
 
   render() {
+    const { good, neutral, bad } = this.state;
     return (
       <Container>
-        <Feedback stats={this.state} handleButtons={this.handleButtons} />
+        <Section title={'Please leave feedback'}>
+          <FeedbackOptions
+            options={['good', 'neutral', 'bad']}
+            onLeaveFeedBack={this.handleButtons}
+          />
+        </Section>
+        <Section title={'Statistics'}>
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            positivePercentage={this.positivePercentage}
+          />
+        </Section>
+        {/* <Feedback stats={this.state} handleButtons={this.handleButtons} /> */}
       </Container>
     );
   }

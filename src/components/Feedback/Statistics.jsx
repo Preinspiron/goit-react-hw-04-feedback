@@ -1,23 +1,19 @@
+import { Notification } from './Notification';
 import { Stats } from './Feedback.styled';
 
-export const Statistics = ({ stats: { good, neutral, bad } }) => {
-  const countTotalFeedback = () => good + neutral + bad;
-  const countPositiveFeedbackPercentage = () =>
-    (good / countTotalFeedback()) * 100;
-
-  // const Positive = (total / good) * 100;
+export const Statistics = ({ good, neutral, bad, positivePercentage }) => {
+  const Positive = (good / positivePercentage()) * 100;
   return (
     <Stats>
-      <h2>Statistics</h2>
-      {countTotalFeedback() === 0 ? (
-        'no feedback available'
+      {positivePercentage() === 0 ? (
+        <Notification message={'no statistics'} />
       ) : (
         <ul>
           <li>Good: {good}</li>
           <li>Neutral: {neutral}</li>
           <li>Bad: {bad}</li>
-          <li>Total: {countTotalFeedback()}</li>
-          <li>Positive: {Math.round(countPositiveFeedbackPercentage())}%</li>
+          <li>Total: {positivePercentage()}</li>
+          <li>Positive: {Math.round(Positive)}%</li>
         </ul>
       )}
     </Stats>

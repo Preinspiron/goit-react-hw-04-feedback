@@ -1,28 +1,29 @@
 // import PT from 'prop-types';
 import { FeedbackSection } from './Feedback.styled';
-import { Statistics } from './Statistics';
+// import { Statistics } from './Statistics';
 
-const Feedback = ({ stats, handleButtons }) => {
+const FeedbackOptions = ({ options, onLeaveFeedBack }) => {
   return (
     <FeedbackSection>
       <h2>Please leave feedback</h2>
       <div>
-        <button name="good" className="btn" onClick={handleButtons}>
-          Good
-        </button>
-        <button name="neutral" className="btn" onClick={handleButtons}>
-          Neutral
-        </button>
-        <button name="bad" className="btn" onClick={handleButtons}>
-          Bad
-        </button>
+        {options.map(btn => (
+          <button
+            key={btn}
+            name={btn}
+            className="btn"
+            onClick={onLeaveFeedBack}
+          >
+            {btn}
+          </button>
+        ))}
       </div>
-      <Statistics stats={stats} />
+      {/* <Statistics stats={stats} /> */}
     </FeedbackSection>
   );
 };
 
-export default Feedback;
+export default FeedbackOptions;
 /* Profile.propTypes = {
   username: PT.string.isRequired,
   tag: PT.string.isRequired,
