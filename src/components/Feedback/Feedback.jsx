@@ -5,7 +5,6 @@ import { FeedbackSection } from './Feedback.styled';
 const FeedbackOptions = ({ options, onLeaveFeedBack }) => {
   return (
     <FeedbackSection>
-      <h2>Please leave feedback</h2>
       <div>
         {options.map(btn => (
           <button
