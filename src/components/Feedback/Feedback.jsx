@@ -1,4 +1,4 @@
-// import PT from 'prop-types';
+import PropTypes from 'prop-types';
 import { FeedbackSection } from './Feedback.styled';
 // import { Statistics } from './Statistics';
 
@@ -23,10 +23,8 @@ const FeedbackOptions = ({ options, onLeaveFeedBack }) => {
 };
 
 export default FeedbackOptions;
-/* Profile.propTypes = {
-  username: PT.string.isRequired,
-  tag: PT.string.isRequired,
-  location: PT.string.isRequired,
-  avatar: PT.string.isRequired,
-  stats: PT.any.isRequired,
-}; */
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string),
+  onLeaveFeedBack: PropTypes.func,
+};

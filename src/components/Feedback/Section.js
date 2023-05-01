@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Notification } from './Notification';
 
 export const Section = ({ title, children, positive }) => {
@@ -13,4 +14,10 @@ export const Section = ({ title, children, positive }) => {
       )}
     </>
   );
+};
+
+Section.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.object,
+  positive: PropTypes.number,
 };
