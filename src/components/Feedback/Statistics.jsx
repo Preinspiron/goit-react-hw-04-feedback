@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Stats } from './Feedback.styled';
 
 export const Statistics = ({ good, neutral, bad, positivePercentage }) => {
@@ -13,4 +14,10 @@ export const Statistics = ({ good, neutral, bad, positivePercentage }) => {
       </ul>
     </Stats>
   );
+};
+Statistics.propTypes = {
+  good: PropTypes.number,
+  neutral: PropTypes.number,
+  bad: PropTypes.number,
+  positivePercentage: PropTypes.func,
 };
