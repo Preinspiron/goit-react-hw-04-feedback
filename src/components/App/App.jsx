@@ -1,48 +1,58 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { Container } from './App.styled.js';
 import FeedbackOptions, { Statistics, Section } from '../Feedback';
 
-export class App extends Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
+export const App = () => {
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
 
-  handleButtons = e => {
+  const handleButtons = e => {
     const INCRMT = 1;
     const { name } = e.target;
-    this.setState(prev => {
-      return { [name]: prev[name] + INCRMT };
-    });
+    switch (name) {
+      case 'Good':
+        setGood(prev => prev + 1);
+        break;
+      case 'Bad':
+        setBad(prev => prev + 1);
+        break;
+      case 'Neutral':
+        setNeutral(prev => prev + 1);
+        break;
+      default:
+        break;
+    }
+
+    // setState(prev => {
+    //   return { [name]: prev[name] + INCRMT };
+    // });
   };
-  positivePercentage = () => {
-    const { good, neutral, bad } = this.state;
+  const positivePercentage = () => {
+    // const { good, neutral, bad } = this.state;
     return good + neutral + bad;
   };
 
-  render() {
-    const { good, neutral, bad } = this.state;
-    const positive = this.positivePercentage();
-    return (
-      <Container>
-        <Section title={'Please leave feedback'}>
-          <FeedbackOptions
-            options={['good', 'neutral', 'bad']}
-            onLeaveFeedBack={this.handleButtons}
-          />
-        </Section>
-        <Section title={'Statistics'} positive={positive}>
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            positivePercentage={this.positivePercentage}
-          />
-        </Section>
+  // const { good, neutral, bad } = this.state;
+  const positive = positivePercentage();
+  return (
+    <Container>
+      <Section title={'Please leave feedback'}>
+        <FeedbackOptions
+          options={['Good', 'Neutral', 'Bad']}
+          onLeaveFeedBack={handleButtons}
+        />
+      </Section>
+      <Section title={'Statistics'} positive={positive}>
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          positivePercentage={positivePercentage}
+        />
+      </Section>
 
-        {/* <Feedback stats={this.state} handleButtons={this.handleButtons} /> */}
-      </Container>
-    );
-  }
-}
+      {/* <Feedback stats={this.state} handleButtons={this.handleButtons} /> */}
+    </Container>
+  );
+};
