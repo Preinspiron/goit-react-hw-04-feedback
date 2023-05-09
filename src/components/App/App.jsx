@@ -8,7 +8,7 @@ export const App = () => {
   const [bad, setBad] = useState(0);
 
   const handleButtons = e => {
-    const INCRMT = 1;
+    // const INCRMT = 1;
     const { name } = e.target;
     switch (name) {
       case 'Good':
